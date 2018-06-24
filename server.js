@@ -80,7 +80,7 @@ app.get("/markread/:id", function(req, res) {
   // as (mongojs.ObjectId(IdYouWantToFind))
   db.books.update(
       { _id: mongojs.ObjectId(req.params.id)},
-      { read: true }
+      { $set: {read :true} }
   , (err, documents) => {
       if(err)
           res.status(500).json(err);
@@ -94,7 +94,7 @@ app.get("/markunread/:id", function(req, res) {
   // as (mongojs.ObjectId(IdYouWantToFind))
   db.books.update(
       { _id: mongojs.ObjectId(req.params.id)},
-      { read: false }
+      { $set: {read :false} }
   , (err, documents) => {
           if(err)
               res.status(500).json(err);
